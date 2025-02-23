@@ -8,9 +8,6 @@
 import Foundation
 
 protocol RecipesAPIService {
-    // Properties
-    var recipes: [Recipe]? { get }
-    
     // Methods
     @discardableResult
     func loadRecipes(sortByName: Bool) async throws -> [Recipe]?
@@ -24,7 +21,6 @@ final class RecipesAPIServiceImp: RecipesAPIService {
     }
     
     private let apiService: APIService
-    var recipes: [Recipe]?
     
     init(apiService: APIService) {
         self.apiService = apiService
@@ -36,7 +32,6 @@ final class RecipesAPIServiceImp: RecipesAPIService {
         let response: RecipeResponse = try await apiService.load(apiRequest)
         let recipes = sortByName ? response.recipes.sorted { $0.name < $1.name } : response.recipes
         
-        self.recipes = recipes
         return recipes
     }
 }

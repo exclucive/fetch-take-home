@@ -16,7 +16,7 @@ enum ViewState {
 }
 
 @MainActor
-final class RecipesViewModel: ObservableObject {
+final class RecipesListViewModel: ObservableObject {
     @Published var state: ViewState = .loading
 
     private let recipesService: RecipesAPIService
